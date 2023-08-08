@@ -24,29 +24,30 @@ git clone https://github.com/mujtabach2/rubixSolver.git
 2. Install the required Python packages:
 pip install -r requirements.txt
 
-#Setup
-1.Before solving, setup the detectColor function in cube_utils.py
-def detectColor(h,s,v):
-    # print(h,s,v)
-    if  h >= 84 and v >= 120 and v <= 239 and s >= 169:
-        return 'red'
-    elif h > 1  and h <= 13 and s >= 122: # good 
-        return 'orange'
-    elif h <= 37 and h>=13 and s >= 116  and v > 92:
-        return 'yellow'
-    elif h>=35 and h<= 66 and v >= 131 and s <= 189 and v<= 186:  # good
-        return 'green'
-    elif h <= 123  and h>=79 : # good 
-        return 'blue'
-    elif h <= 92 and s<=90 and v<=212:
-        return 'white'
+## Setup
+1. Before solving, adjust the hsv values in the detectColor function in cube_utils.py. Due to lighting and different colour cubes, adjustments in hsv are required for optimal detection. It is recommended to detect and solve the cube in consistent lighting and background.
 
-    return 'white'
+        def detectColor(h,s,v):
+            # print(h,s,v)
+            if  h >= 84 and v >= 120 and v <= 239 and s >= 169:
+                return 'red'
+            elif h > 1  and h <= 13 and s >= 122: # good 
+                return 'orange'
+            elif h <= 37 and h>=13 and s >= 116  and v > 92:
+                return 'yellow'
+            elif h>=35 and h<= 66 and v >= 131 and s <= 189 and v<= 186:  # good
+                return 'green'
+            elif h <= 123  and h>=79 : # good 
+                return 'blue'
+            elif h <= 92 and s<=90 and v<=212:
+                return 'white'
+    
+        return 'white'
 2. To aid in setting the hsv run the program:
 python3 colordetect.py
-![detect](imgs/setColor.png)
-4. Adjust hsv values until the desired colour is the only color seen on the cube
 
+4. Adjust hsv values until the desired colour is the only colour seen on the cube. Remember to adjust values in the function detectColor after optimal hsv values are found.
+![detect](imgs/setColor.png)
 
 ## Usage
 
