@@ -18,11 +18,15 @@ The Rubik's Cube Solver is a Python program that aims to solve a scrambled Rubik
 ## Installation
 
 1. Clone the repository:
+```
 git clone https://github.com/mujtabach2/rubixSolver.git
+```
 
 
-2. Install the required Python packages:
+3. Install the required Python packages:
+```
 pip install -r requirements.txt
+```
 
 ## Setup
 1. Before solving, adjust the hsv values in the detectColor function in cube_utils.py. Due to lighting and different colour cubes, adjustments in hsv are required for optimal detection. It is recommended to detect and solve the cube in consistent lighting and background.
@@ -44,7 +48,9 @@ pip install -r requirements.txt
     
         return 'white'
 2. To aid in setting the hsv run the program:
+```
 python3 colordetect.py
+```
 
 4. Adjust hsv values until the desired colour is the only colour seen on the cube. Remember to adjust values in the function detectColor after optimal hsv values are found.
 ![detect](imgs/setColor.png)
@@ -52,15 +58,17 @@ python3 colordetect.py
 ## Usage
 
 1. Run the program:
+```
 python3 open.py
+```
 
-2. Line up the cube on the 9 squares on the screen until the top-left detector matches the face's state, and press the corresponding key on the face of the preview cube to save that faces state.
+3. Line up the cube on the 9 squares on the screen until the top-left detector matches the face's state, and press the corresponding key on the face of the preview cube to save that faces state.
 ![detect](imgs/rename.png)
-3. Repeat for all sides being conscious of the position, use the preview for aid.
+4. Repeat for all sides being conscious of the position, use the preview for aid.
 ![detect](imgs/properState.png)
-4. Once all faces are scanned press enter(for each step), the program will display the solution in 2D visualization and on screen.
+5. Once all faces are scanned press enter(for each step), the program will display the solution in 2D visualization and on screen.
 ![detect](imgs/solve.gif)
-5. Textual Instruction will be in the console.
+6. Textual Instruction will be in the console.
 ![detect](imgs/text.png)
 ## Contributing
 
