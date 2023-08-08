@@ -11,7 +11,7 @@ The Rubik's Cube Solver is a Python program that aims to solve a scrambled Rubik
 - Real-time Rubik's Cube scanning using a webcam
 - Color detection and recognition for each sticker
 - Kociemba algorithm for calculating the optimal solution
-- Visualization of the solved cube in 3D representation
+- Visualization of the solved cube in 2D representation
 - Textual instructions for the user to follow
 - User-friendly interface for easy interaction
 
