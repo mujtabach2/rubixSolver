@@ -6,7 +6,7 @@ from variables import state, sign_conv, color, stickers, textPoints
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-def color_detect(h,s,v):
+def detectColor(h,s,v):
     # print(h,s,v)
     if  h >= 84 and v >= 120 and v <= 239 and s >= 169:
         return 'red'
@@ -23,7 +23,7 @@ def color_detect(h,s,v):
 
     return 'white'
 
-def rotate(side):
+def turn(side):
     main=state[side]
     front=state['front']
     left=state['left']
@@ -47,7 +47,7 @@ def rotate(side):
 
     main[0],main[1],main[2],main[3],main[4],main[5],main[6],main[7],main[8]=main[6],main[3],main[0],main[7],main[4],main[1],main[8],main[5],main[2]
 
-def revrotate(side):
+def revturn(side):
     main=state[side]
     front=state['front']
     left=state['left']
@@ -72,19 +72,19 @@ def revrotate(side):
     main[0],main[1],main[2],main[3],main[4],main[5],main[6],main[7],main[8]=main[2],main[5],main[8],main[1],main[4],main[7],main[0],main[3],main[6]
 
 
-def draw_stickers(frame,stickers,name):
+def drawStickers(frame,stickers,name):
         for x,y in stickers[name]:
             cv2.rectangle(frame, (x,y), (x+30, y+30), (255,255,255), 2)
 
 
 
-def draw_preview_stickers(frame,stickers):
+def previewSticker(frame,stickers):
         stick=['front','back','left','right','up','down']
         for name in stick:
             for x,y in stickers[name]:
                 cv2.rectangle(frame, (x,y), (x+40, y+40), (255,255,255), 2)
 
-def texton_preview_stickers(frame,stickers, preview):
+def stickerText(frame,stickers, preview):
         stick=['front','back','left','right','up','down']
         for name in stick:
             for x,y in stickers[name]:
@@ -93,43 +93,42 @@ def texton_preview_stickers(frame,stickers, preview):
                 sym,col,x1,y1=textPoints[name][1][0],textPoints[name][1][1],textPoints[name][1][2],textPoints[name][1][3]             
                 cv2.putText(preview, sym, (x1,y1), font,0.5,col, 1, cv2.LINE_AA)  
 
-def fill_stickers(frame,stickers,sides):    
+def colorSticker(frame,stickers,sides):    
     for side,colors in sides.items():
         num=0
         for x,y in stickers[side]:
             cv2.rectangle(frame,(x,y),(x+40,y+40),color[colors[num]],-1)
             num+=1
             
-def process(operation):
+def process(operation,preview,solution):
     replace={
-                "F":[rotate,'front'],
-                "F2":[rotate,'front','front'],
-                "F'":[revrotate,'front'],
-                "U":[rotate,'up'],
-                "U2":[rotate,'up','up'],
-                "U'":[revrotate,'up'],
-                "L":[rotate,'left'],
-                "L2":[rotate,'left','left'],
-                "L'":[revrotate,'left'],
-                "R":[rotate,'right'],
-                "R2":[rotate,'right','right'],
-                "R'":[revrotate,'right'],
-                "D":[rotate,'down'],
-                "D2":[rotate,'down','down'],
-                "D'":[revrotate,'down'],
-                "B":[rotate,'back'],
-                "B2":[rotate,'back','back'],
-                "B'":[revrotate,'back']           
+                "F":[turn,'front'],
+                "F2":[turn,'front','front'],
+                "F'":[revturn,'front'],
+                "U":[turn,'up'],
+                "U2":[turn,'up','up'],
+                "U'":[revturn,'up'],
+                "L":[turn,'left'],
+                "L2":[turn,'left','left'],
+                "L'":[revturn,'left'],
+                "R":[turn,'right'],
+                "R2":[turn,'right','right'],
+                "R'":[revturn,'right'],
+                "D":[turn,'down'],
+                "D2":[turn,'down','down'],
+                "D'":[revturn,'down'],
+                "B":[turn,'back'],
+                "B2":[turn,'back','back'],
+                "B'":[revturn,'back']           
     }    
     a=0
     for i in operation:
         for j in range(len(replace[i])-1):
             replace[i][0](replace[i][j+1])
         cv2.putText(preview, i, (700,a+50), font,1,(0,255,0), 1, cv2.LINE_AA)  
-        fill_stickers(preview,stickers,state)
+        colorSticker(preview,stickers,state)
         solution.append(preview)
         cv2.imshow('solution',preview)
         cv2.waitKey()
         cv2.putText(preview, i, (700,50), font,1,(0,0,0), 1, cv2.LINE_AA) 
-        
-        draw_3d_cube(state)
+    

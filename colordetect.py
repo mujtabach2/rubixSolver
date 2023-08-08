@@ -4,10 +4,6 @@ import numpy as np
 
 def nothing(x):
     pass
-
-# Load in image
-# image = cv2.imread('1.png')
-
 # Create a window
 cv2.namedWindow('image')
 
