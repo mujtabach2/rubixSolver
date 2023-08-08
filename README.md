@@ -55,7 +55,7 @@ python3 colordetect.py
 python3 open.py
 
 2. Line up the cube on the 9 squares on the screen until the top-left detector matches the face's state, and press the corresponding key on the face of the preview cube to save that faces state.
-![detect](imgs/detect.png)
+![detect](imgs/rename.png)
 3. Repeat for all sides being conscious of the position, use the preview for aid.
 ![detect](imgs/properState.png)
 4. Once all faces are scanned press enter(for each step), the program will display the solution in 2D visualization and on screen.
