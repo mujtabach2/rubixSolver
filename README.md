@@ -1,0 +1,75 @@
+# Rubik's Cube Solver
+
+![Rubik's Cube](https://cdn.thewirecutter.com/wp-content/media/2023/01/rubikscube-2048px-08408.jpg)
+
+## Description
+
+The Rubik's Cube Solver is a Python program that aims to solve a scrambled Rubik's Cube using computer vision and the Kociemba algorithm. The program captures a live video feed from a webcam, detects the colors of each sticker, and calculates the optimal moves to solve the cube. The solved cube configuration is then displayed visually and can be printed as text instructions for the user to follow.
+
+## Features
+
+- Real-time Rubik's Cube scanning using a webcam
+- Color detection and recognition for each sticker
+- Kociemba algorithm for calculating the optimal solution
+- Visualization of the solved cube in 3D representation
+- Textual instructions for the user to follow
+- User-friendly interface for easy interaction
+
+## Installation
+
+1. Clone the repository:
+git clone https://github.com/mujtabach2/rubixSolver.git
+
+
+2. Install the required Python packages:
+pip install -r requirements.txt
+
+#Setup
+1.Before solving, setup the detectColor function in cube_utils.py
+def detectColor(h,s,v):
+    # print(h,s,v)
+    if  h >= 84 and v >= 120 and v <= 239 and s >= 169:
+        return 'red'
+    elif h > 1  and h <= 13 and s >= 122: # good 
+        return 'orange'
+    elif h <= 37 and h>=13 and s >= 116  and v > 92:
+        return 'yellow'
+    elif h>=35 and h<= 66 and v >= 131 and s <= 189 and v<= 186:  # good
+        return 'green'
+    elif h <= 123  and h>=79 : # good 
+        return 'blue'
+    elif h <= 92 and s<=90 and v<=212:
+        return 'white'
+
+    return 'white'
+2. To aid in setting the hsv run the program:
+python3 colordetect.py
+![detect](imgs/setColor.png)
+4. Adjust hsv values until the desired colour is the only color seen on the cube
+
+
+## Usage
+
+1. Run the program:
+python3 open.py
+
+2. Line up the cube on the 9 squares on the screen until the top-left detector matches the face's state, and press the corresponding key on the face of the preview cube to save that faces state.
+![detect](imgs/detect.png)
+3. Repeat for all sides being conscious of the position, use the preview for aid.
+![detect](imgs/properState.png)
+4. Once all faces are scanned press enter(for each step), the program will display the solution in 2D visualization and on screen.
+![detect](imgs/solve.gif)
+5. Textual Instruction will be in the console.
+![detect](imgs/text.png)
+## Contributing
+
+Contributions are welcome! If you have any ideas, bug fixes, or improvements, please feel free to create a pull request. For major changes, please open an issue first to discuss the changes with the maintainers.
+
+## Acknowledgments
+
+- The [Kociemba](https://github.com/muodov/kociemba) Python library for the Rubik's Cube solving algorithm.
+- [OpenCV](https://opencv.org/) for computer vision functionalities.
+- [Plotly](https://plotly.com/) for 3D cube visualization.
+
+
+
