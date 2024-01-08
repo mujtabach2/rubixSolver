@@ -23,10 +23,11 @@ git clone https://github.com/mujtabach2/rubixSolver.git
 ```
 
 
-3. Install the required Python packages:
+2. Install the required Python packages:
 ```
 pip install -r requirements.txt
 ```
+
 
 ## Setup
 1. Before solving, adjust the hsv values in the `detectColor` function in `cube_utils.py`. Due to lighting and different colour cubes, adjustments in hsv are required for optimal detection. It is recommended to detect and solve the cube in consistent lighting and background.
